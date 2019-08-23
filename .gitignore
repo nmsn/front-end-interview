@@ -88,3 +88,6 @@ typings/
 .dynamodb/
 
 .temp/
+.DS_Store
+count.js
+deploy.sh
