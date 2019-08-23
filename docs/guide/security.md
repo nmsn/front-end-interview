@@ -117,7 +117,18 @@ XSS 攻击有两大要素：
 
 #### 转义 HTML
 
-如果拼接 HTML 是必要的，就需要采用合适的转义库，对 HTML 模板各处插入点进行充分的转义。<br />常用的模板引擎，如 doT.js、ejs、FreeMarker 等，对于 HTML 转义通常只有一个规则，就是把 `& < > " ' /` 这几个字符转义掉，确实能起到一定的 XSS 防护作用，但并不完善：<br />|XSS 安全漏洞|简单转义是否有防护作用| |-|-| |HTML 标签文字内容|有| |HTML 属性值|有| |CSS 内联样式|无| |内联 JavaScript|无| |内联 JSON|无| |跳转链接|无|<br />所以要完善 XSS 防护措施，我们要使用更完善更细致的转义策略。<br />例如 Java 工程里，常用的转义库为 `org.owasp.encoder`。以下代码引用自 [org.owasp.encoder 的官方说明](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)。
+如果拼接 HTML 是必要的，就需要采用合适的转义库，对 HTML 模板各处插入点进行充分的转义。<br />常用的模板引擎，如 doT.js、ejs、FreeMarker 等，对于 HTML 转义通常只有一个规则，就是把 `& < > " ' /` 这几个字符转义掉，确实能起到一定的 XSS 防护作用，但并不完善：
+
+|XSS 安全漏洞|简单转义是否有防护作用| 
+|-|-| 
+|HTML 标签文字内容|有| 
+|HTML 属性值|有| 
+|CSS 内联样式|无| 
+|内联 JavaScript|无| 
+|内联 JSON|无| 
+|跳转链接|无|
+
+所以要完善 XSS 防护措施，我们要使用更完善更细致的转义策略。<br />例如 Java 工程里，常用的转义库为 `org.owasp.encoder`。以下代码引用自 [org.owasp.encoder 的官方说明](https://www.owasp.org/index.php/OWASP_Java_Encoder_Project#tab=Use_the_Java_Encoder_Project)。
 
 ```html
 <!-- HTML 标签内文字内容 -->
@@ -213,7 +224,7 @@ eval("UNTRUSTED")
 * 验证码：防止脚本冒充用户提交危险操作。
 
 
-> 过滤 Html 标签能否防止 XSS? 请列举不能的情况?
+> 过滤 HTML 标签能否防止 XSS? 请列举不能的情况?
 
 用户除了上传
 
